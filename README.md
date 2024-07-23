@@ -44,7 +44,7 @@ Use a positive value to shift the time forward, and a negative value to shift it
 1. Adjust the EXIF datetime of a single image file by adding 5 hours
 
 ```bash
-python shift_exif.py /path/to/image.jpg 5
+python3 shift_exif.py /path/to/image.jpg 5
 ```
 
 1. Adjust the EXIF datetime of all image files in a directory by subtracting 3 hours:

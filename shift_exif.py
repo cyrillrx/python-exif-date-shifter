@@ -16,10 +16,6 @@ def main():
     process_path(args.path, time_shift)
 
 
-if __name__ == "__main__":
-    main()
-
-
 def process_path(path: str, time_shift: timedelta):
     if os.path.isfile(path):
         if is_image(path):
@@ -72,3 +68,7 @@ def shift_exif_time_with_key(exif_dict: dict, exif_key: int, time_shift: timedel
 
 def is_image(filepath: str):
     return filepath.lower().endswith(('.jpg', '.jpeg', '.tiff', '.png'))
+
+
+if __name__ == "__main__":
+    main()
