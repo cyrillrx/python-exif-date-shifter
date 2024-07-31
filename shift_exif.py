@@ -36,12 +36,12 @@ def process_folder(folder_path: str, time_shift: timedelta):
 def shift_exif_datetime(filepath: str, time_shift: timedelta):
     print(f"EXIF adjusting data for file {filepath}")
     try:
-        with exiftool.ExifToolHelper() as et:
-            metadata = et.get_metadata(filepath)
+        with exiftool.ExifToolHelper() as tool:
+            metadata = tool.get_metadata(filepath)
 
             new_metadata = shift_exif_datetimes(metadata, time_shift)
             if new_metadata:
-                et.execute(*[f"-{key}={value}" for key, value in new_metadata.items()], filepath)
+                tool.execute(*[f"-{key}={value}" for key, value in new_metadata.items()], filepath)
 
         print(f"EXIF data adjusted for {filepath}")
     except Exception as e:
