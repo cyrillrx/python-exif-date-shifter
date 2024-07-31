@@ -12,7 +12,7 @@ skipped_files: dict = {}  # key: filename, value: reason
 def main():
     parser = argparse.ArgumentParser(description="Rename file based on EXIF dates.")
     parser.add_argument("path", type=str, help="Path to the file or directory")
-    parser.add_argument("--suffix", type=str, default="", help="file suffix")
+    parser.add_argument("--suffix", type=str, default="none", help="keeps path as suffix if empty")
     parser.add_argument("--filter", type=str, default="", help="Processing files containing this string")
     parser.add_argument("--timeShift", type=int, default=0, help="Time shift in hours")
     parser.add_argument("--dryRun", action='store_true', help="Use to show new names without renaming")
@@ -36,8 +36,8 @@ def main():
             print(f"File renamed {filepath} -> {new_filename}")
 
     print(f"\nFiles skipped: {len(skipped_files)}:")
-    for key, value in skipped_files.items():
-        print(f"{key} -> {value}")
+    # for key, value in skipped_files.items():
+    #     print(f"{key} -> {value}")
 
 
 def process_path(path: str, suffix: str, contains: str, time_shift: timedelta):
@@ -88,9 +88,9 @@ def get_new_name(original_filename: str, metadata: List, suffix: str, time_shift
         if suffix == "":
             return formatted_dates[0] + "__" + basename
         elif suffix == "none":
-            return formatted_dates[0] + os.path.splitext(basename)[1]
+            return formatted_dates[0] + os.path.splitext(basename)[1].lower()
         else:
-            return formatted_dates[0] + suffix + os.path.splitext(basename)[1]
+            return formatted_dates[0] + suffix + os.path.splitext(basename)[1].lower()
     else:
         return ""
 
