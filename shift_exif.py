@@ -62,6 +62,16 @@ def shift_exif_datetimes(metadata: List, time_shift: timedelta) -> dict:
         add_if_exists(input_metadata, output_metadata, 'QuickTime:TrackCreateDate', time_shift)
         add_if_exists(input_metadata, output_metadata, 'QuickTime:TrackModifyDate', time_shift)
 
+        add_if_exists(input_metadata, output_metadata, 'EXIF:TrackCreateDate', time_shift)
+        add_if_exists(input_metadata, output_metadata, 'EXIF:TrackModifyDate', time_shift)
+
+        add_if_exists(input_metadata, output_metadata, 'EXIF:CreationTime', time_shift)
+        add_if_exists(input_metadata, output_metadata, 'EXIF:CreateDate', time_shift)
+        add_if_exists(input_metadata, output_metadata, 'EXIF:ModifyDate', time_shift)
+
+        add_if_exists(input_metadata, output_metadata, 'EXIF:MediaCreateDate', time_shift)
+        add_if_exists(input_metadata, output_metadata, 'EXIF:MediaModifyDate', time_shift)
+
     return output_metadata
 
 
